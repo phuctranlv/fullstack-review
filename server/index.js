@@ -20,12 +20,17 @@ app.post('/repos', function (req, res) {
     }
     // save the repo information in the database
     let responseFromGithub = JSON.parse(result.body);
-    let dataToStoreInDatabase = {};
-    dataToStoreInDatabase.name = responseFromGithub[0].owner.login;
-    dataToStoreInDatabase.avatar_url = responseFromGithub[0].owner.avatar_url;
-    dataToStoreInDatabase.repos_url = responseFromGithub[0].owner.repos_url;
-    dataToStoreInDatabase.forks = responseFromGithub[0].forks;
-    console.log('dataToStoreInDatabase:', dataToStoreInDatabase);
+    let dataArrayToSaveToDatabase = [];
+    for (var i = 0; i < responseFromGithub.length; i++) {
+      let dataObject = {};
+      dataObject.name = responseFromGithub[i].owner.login;
+      dataObject.avatar_url = responseFromGithub[i].owner.avatar_url;
+      dataObject.repos_url = responseFromGithub[i].owner.repos_url;
+      dataObject.forks = responseFromGithub[i].forks;
+      dataArrayToSaveToDatabase.push(dataObject);
+      console.log('dataObject:', dataObject);
+    }
+
   })
 
 
