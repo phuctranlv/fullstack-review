@@ -18,7 +18,6 @@ class Search extends React.Component {
   }
 
   search(e) {
-    console.log(`${this.state.term} was searched`);
     $.ajax({
       type: 'post',
       url: 'http://localhost:1128/repos',
@@ -27,7 +26,9 @@ class Search extends React.Component {
         $.ajax({
           type: 'get',
           url: 'http://localhost:1128/repos',
-          success: this.props.onSearch(data)
+          success: (result) => {
+            this.props.onSearch(JSON.parse(result));
+          }
         })
       }
     })
