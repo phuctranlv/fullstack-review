@@ -1,0 +1,10 @@
+.repo {
+  display: flex;
+}
+.repo div {
+  width: 250px;
+  border: 2px;
+  background-color: blanchedalmond;
+  border-color: black;
+  border-style: solid;
+}
